@@ -99,7 +99,7 @@ footer {
     padding: 1rem 0;
     background: #333;
     color: #fff;
-    margin-top: 2rem;
+    
 }
 
 footer p {
@@ -139,10 +139,139 @@ p{
     margin-top: auto;  /* Pushes button to the bottom */
     cursor: pointer;
     border-radius: 5px;
-    width: 80%;  /* Controls button width */
+    width: 100%;  /* Controls button width */
     align-self: center; /* Centers button horizontally */
 }
 
 .card button:hover {
     background:#7758ca;
 }
+#cart-counter {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background: #c941da;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background-color: #222;
+    color: white;
+}
+
+.dark-mode .card {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode nav {
+    background-color: #222;
+}
+
+/* Search Bar */
+input[type="text"] {
+    position:fixed;
+    top: 10px;
+    left: 20px;
+    padding:10px 30px;
+    border: #c941da;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Scroll to Top Button */
+button.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    padding: 10px 30px;
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.scroll-to-top:hover {
+    background: #c941da;
+}
+
+/* Styling for each star */
+.rating span {
+    font-size: 30px;
+    color: #ccc; /* Default color for empty stars */
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* Styling for filled stars */
+.rating span.filled {
+    color: gold; /* Gold color for filled stars */
+}
+
+/* Hover effect for stars */
+.rating span:hover,
+.rating span:hover ~ span {
+    color: #ffcc00; /* Slightly lighter gold on hover */
+}
+/* User login/logout buttons */
+#user-status {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+#user-status button {
+    padding: 10px 20px;
+    background-color: #c941da;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#user-status button:hover {
+    background-color: #7758ca;
+}
+
+nav {
+    background: #444;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00bcd4;
+}
+
+li { 
+    list-style-type: none 
+}
+.homeimage{
+    width: 100%;
+}
+.emaillogo{
+    width:40px;
+    height:40px;
+    position:relative;
+    top:10px; 
+
+}
+
