@@ -54,6 +54,26 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    const voiceSearchButton = document.createElement("button");
+    voiceSearchButton.textContent = "🎙 Voice Search";
+    document.body.appendChild(voiceSearchButton);
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.continuous = false;
+    recognition.lang = "en-US";
+
+    voiceSearchButton.addEventListener("click", function () {
+        recognition.start();
+    });
+
+    recognition.onresult = function (event) {
+        const voiceQuery = event.results[0][0].transcript.toLowerCase();
+        searchInput.value = voiceQuery;
+        searchInput.dispatchEvent(new Event("input"));
+    };
+
+
+
     // Scroll to Top Button
     const scrollToTop = document.createElement("button");
     scrollToTop.textContent = "Scroll to Top";
@@ -104,45 +124,59 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
     document.addEventListener("DOMContentLoaded", function () {
-        const userStatus = document.createElement("div");
-        userStatus.id = "user-status";
-        document.body.appendChild(userStatus);
+        const cards = document.querySelectorAll(".card");
     
-        const isLoggedIn = false; // Simulate user login state
+        // Create a modal for checkout
+        const modal = document.createElement("div");
+        modal.id = "checkout-modal";
+        modal.style.display = "none";
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2>Checkout</h2>
+                <p id="modal-product-name"></p>
+                <button id="confirm-buy">Confirm Purchase</button>
+                <button id="cancel-buy">Cancel</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
     
-        if (isLoggedIn) {
-            userStatus.innerHTML = `
-                <button id="logout">Logout</button>
-            `;
-            document.getElementById("logout").addEventListener("click", function () {
-                alert("Logged out");
-                userStatus.innerHTML = `
-                    <button id="login">Login</button>
-                `;
+        // Buy Now Button Functionality
+        cards.forEach(card => {
+            const buyNowButton = document.createElement("button");
+            buyNowButton.textContent = "Buy Now";
+            buyNowButton.classList.add("buy-now");
+    
+            buyNowButton.addEventListener("click", function () {
+                const productTitle = card.querySelector("h3").textContent;
+                document.getElementById("modal-product-name").textContent = `Confirm purchase for: ${productTitle}`;
+                modal.style.display = "block";
+    
+                // Confirm purchase
+                document.getElementById("confirm-buy").onclick = function () {
+                    alert(`Thank you for purchasing ${productTitle}!`);
+                    modal.style.display = "none";
+                };
+    
+                // Cancel purchase
+                document.getElementById("cancel-buy").onclick = function () {
+                    modal.style.display = "none";
+                };
             });
-        } else {
-            userStatus.innerHTML = `
-                <button id="login">Login</button>
-            `;
-            document.getElementById("login").addEventListener("click", function () {
-                alert("Logged in");
-                userStatus.innerHTML = `
-                    <button id="logout">Logout</button>
-                `;
-            });
-        }
+    
+            card.appendChild(buyNowButton);
+        });
+    
+        // Close modal when clicking outside
+        window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
     });
     
     
+
+  
     
-}); 
-
-
-
-
-
-    
-
-    
+});
